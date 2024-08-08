@@ -6,8 +6,7 @@ def parse_input(user_input):
     cmd = cmd.strip().lower()
     return cmd, *args
 
-# Create input_decorator to process exception from handler function
-def input_decorator(handler):
+def input_error(handler):
     def wrapper(*args, **kwargs):
         try:
             return handler(*args, **kwargs)
@@ -19,7 +18,7 @@ def input_decorator(handler):
     return wrapper
 
 
-@input_decorator
+@input_error
 def add_contact(args, contacts):
     """
     Adds a contact to the contacts dictionary.
@@ -36,7 +35,7 @@ def add_contact(args, contacts):
     return "Contact added."
 
 
-@input_decorator
+@input_error
 def get_contact(args, contacts):
     """
     Returns the phone number for the given contact.
@@ -55,7 +54,7 @@ def get_contact(args, contacts):
     return contacts[name]
 
 
-@input_decorator
+@input_error
 def remove_contact(args, contacts):
     """
     Removes the contact from the contacts dictionary.
@@ -77,7 +76,7 @@ def remove_contact(args, contacts):
     return "Contact removed."
 
 
-@input_decorator
+@input_error
 def update_contact(args, contacts):
     """
     Updates the phone number for the given contact.
@@ -99,7 +98,7 @@ def update_contact(args, contacts):
     return "Contact updated."
 
 
-@input_decorator
+@input_error
 def list_contacts(contacts) -> str:
     """
     Returns the list of contacts.
